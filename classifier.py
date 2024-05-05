@@ -99,7 +99,8 @@ class Classifier():
                 if orgaan == '':
                     pattern = re.search(r'(.*)\n\nen\n\n(.*)', dataset[i], re.M)
                     orgaan = pattern.group(1)
-                if orgaan.replace('.', '') not in ["de staatssecretaris van Veiligheid en Justitie",
+                orgaan = orgaan.replace('.', '')
+                if orgaan not in ["de staatssecretaris van Veiligheid en Justitie",
                                   "de staatssecretaris van Justitie en Veiligheid",
                                   "de minister van Veiligheid en Justitie",
                                   "de minister van Sociale zaken en Werkgelegenheid",
@@ -116,6 +117,7 @@ class Classifier():
                     if orgaan == '':
                         pattern = re.search(r'(.*)\n\nen\n\n(.*)', dataset[i], re.M)
                         orgaan = pattern.group(2)
+                    orgaan = orgaan.replace('.', '')
             except:
                 orgaan = "undefined"
             organen.append(orgaan)
