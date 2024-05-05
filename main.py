@@ -62,13 +62,13 @@ if __name__ == '__main__':
     predicted_rechtsgebied = classify(X, y, Z, min_prob=0.3, model="SVM")
 
     X, y, Z = clean("aangehaalde normen")
-    for i in ["zorgvuldigheidsbeginsel", "motiveringsbeginsel", "wabo"]:
+    for i in ["wabo", "motiveringsbeginsel", "zorgvuldigheidsbeginsel"]:
         print(i + " aangehaald")
         predicted_aangehaald = classify(X, y[i], Z, heatmap_labels=["niet_aangehaald", "aangehaald", None, None],
                                         model="SVM")
 
     X, y, Z = clean("geschonden normen")
-    for i in ["zorgvuldigheidsbeginsel", "motiveringsbeginsel", "wabo"]:
+    for i in ["wabo", "motiveringsbeginsel", "zorgvuldigheidsbeginsel"]:
         print(i + " geschonden")
         predicted_geschonden = classify(X, y[i], Z, heatmap_labels=["niet_geschonden", "geschonden", None, None],
                                         model="SVM")
@@ -76,5 +76,6 @@ if __name__ == '__main__':
     X, y, Z = clean(None)
     predicted_orgaan = classify(X, y, Z, model="RB")
 
-    chi_squared(predicted_rechtmatigheid.copy(), predicted_rechtsgebied)
-    chi_squared(predicted_rechtmatigheid, predicted_orgaan)
+    chi_squared(predicted_rechtmatigheid.copy(), predicted_rechtsgebied.copy())
+    chi_squared(predicted_rechtmatigheid.copy(), predicted_orgaan.copy())
+    
